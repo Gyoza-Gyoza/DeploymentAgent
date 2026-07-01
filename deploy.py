@@ -8,7 +8,7 @@ import secrets
 
 def deploy(request: Request):
     auth_header = request.headers.get("Authorization")
-    deploy_token = "Bearer " + os.getenv("DEPLOY_TOKEN")
+    deploy_token = f"Bearer {os.getenv("DEPLOY_TOKEN")}"
     if secrets.compare_digest(auth_header, deploy_token):
         try:
             deploy_path = Path("/home/deploy/chipin-api/deploy.sh")
