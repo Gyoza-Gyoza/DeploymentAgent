@@ -3,7 +3,7 @@ import subprocess
 
 def deploy():
     try:
-        deploy_path = Path("deploy.sh").resolve()
+        deploy_path = Path("/home/deploy/chipin-api/deploy.sh")
         logs = subprocess.run(["bash", deploy_path], check = True, capture_output = True, text = True)
         print(logs.stdout)
         return True

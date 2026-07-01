@@ -8,4 +8,3 @@ app = FastAPI()
 status_code = status.HTTP_200_OK)
 def try_deploy():
     deploy()
-    return {"message": "Deploy successful"}
