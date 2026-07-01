@@ -1,7 +1,9 @@
 ﻿import os
 from pathlib import Path
 import subprocess
-from urllib.error import HTTPError
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from fastapi import Request, HTTPException
 import secrets
