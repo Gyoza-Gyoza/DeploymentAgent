@@ -30,7 +30,15 @@ def try_deploy(request: Request):
     status_code = status.HTTP_200_OK)
 def test(request: Request):
     if authorize(request):
-        
+        try:
+            path = Path("/home/deploy/chipin-api/test.sh")
+            logs = subprocess.run(["bash", path], check=True, capture_output=True, text=True)
+            print(logs.stdout)
+            return True
+        except subprocess.CalledProcessError as e:
+            raise HTTPException(status_code=e.returncode, detail=e.stderr)
+    else:
+        raise HTTPException(status_code=401, detail="Unauthorized")
 
 def authorize(request: Request):
     auth_header = request.headers.get("Authorization")
