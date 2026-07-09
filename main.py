@@ -21,6 +21,11 @@ def try_deploy(request: Request):
             print(logs.stdout)
             return True
         except subprocess.CalledProcessError as e:
+            print("Return code:", e.returncode)
+            print("STDOUT:")
+            print(e.stdout)
+            print("STDERR:")
+            print(e.stderr)
             raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=e.stderr)
     else:
         raise HTTPException(status_code=401, detail="Unauthorized")
